@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./lib/layui/css/layui.css" />
+  <link rel="stylesheet" href="./css/index.css">
+  
+</head>
+<body>
+  
+  <div class="layui-card">
+    <div class="layui-card-header">
+      用户管理
+      <button type="button" class="layui-btn layui-btn-sm">添加用户</button>
+    </div>
+    <div class="layui-card-body">
+      <table class="layui-table">
+        <colgroup>
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>昵称</th>
+            <th>头像</th>
+            <th>操作</th>
+          </tr> 
+        </thead>
+        <tbody>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 添加的模板 start -->
+  <script type="text/html" id="tpl-add">
+    <form class="layui-form" id="add-form" action="" style="margin-top: 25px; margin-right: 30px;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+          <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">昵称</label>
+        <div class="layui-input-block">
+          <input type="text" name="nickname" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">头像</label>
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn" id="chooseImgage">
+            <i class="layui-icon">&#xe67c;</i>上传图片
+          </button>
+          <img src="" height="30" id="preview" alt="">
+          <input type="file" name="user_pic" id="file" style="display: none;" />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+  </script>
+  <!-- 添加的模板 end -->
+
+  <!-- 编辑的模板 start -->
+  <script type="text/html" id="tpl-edit">
+    <form class="layui-form" id="edit-form" action="" style="margin-top: 25px; margin-right: 30px;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+          <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">昵称</label>
+        <div class="layui-input-block">
+          <input type="text" name="nickname" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">头像</label>
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn" id="chooseImage2">
+            <i class="layui-icon">&#xe67c;</i>上传图片
+          </button>
+          <img src="" id="preview2" height="30" alt="">
+          <input type="file" name="user_pic" id="file2" style="display: none;" />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="hidden" name="id">
+          <button class="layui-btn" lay-submit lay-filter="formDemo">确认修改</button>
+        </div>
+      </div>
+    </form>
+  </script>
+  <!-- 编辑的模板 end -->
+
+
+  <!-- 列表模板 start -->
+  <script type="text/html" id="tpl-list">
+    {{each data item}}
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.username}}</td>
+      <td>{{item.nickname}}</td>
+      <td>
+        <img src="http://localhost:3007/{{item.user_pic}}" height="35" />
+      </td>
+      <td>
+        <button data-id="{{item.id}}" data-username="{{item.username}}" data-nickname="{{item.nickname}}" data-pic="{{item.user_pic}}" type="button" class="layui-btn layui-btn-xs">编辑</button>
+        <button data-id="{{item.id}}" type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
+      </td>
+    </tr>
+    {{/each}}
+  </script>
+  <!-- 列表模板 end -->
+
+
+  <script src="./lib/jquery.js"></script>
+  <script src="./lib/template-web.js"></script>
+  <script src="./lib/layui/layui.all.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>
